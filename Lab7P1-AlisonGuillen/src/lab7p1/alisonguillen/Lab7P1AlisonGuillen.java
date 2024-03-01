@@ -44,18 +44,31 @@ public class Lab7P1AlisonGuillen {
                     imprimirMatriz(matriz);
                     encontrarNumeroEquilibrado(matriz);
                     break;
-              case 2:
-                  int n2, m2;
-                  System.out.println("Ingrese cantidad de columnas");
-                  n2 = rd.nextInt();
-                  System.out.println("Ingrese cantidad de filas");
-                  m2 = rd.nextInt();
-                  
-                  
-                  break;
-                  
-                 case 4:
-                    System.out.println("salir ");
+                case 2:
+                   int filas, columnas;
+                    System.out.print("Ingrese cantidad de filas: ");
+                    filas = rd.nextInt();
+                    System.out.print("Ingrese cantidad de columnas: ");
+                    columnas = rd.nextInt();
+
+                    int[][] matrizSolitario = new int[filas][columnas];
+                    generarMatriz(matrizSolitario);
+                    imprimirMatriz(matrizSolitario);
+                    encontrarNumeroSolitario(matrizSolitario);
+
+                    break;
+
+                case 3:
+                    System.out.print("Ingrese size de la matriz: ");
+                    int size = rd.nextInt();
+                    int[][] matriz2 = generarMatriz2(size);
+
+                    System.out.println("Matriz generada:");
+                    imprimirMatriz2(matriz2);
+                    break;
+
+                case 4:
+                    System.out.println("Salir ");
                     respuesta = 4;
                     break;
                 default:
@@ -64,30 +77,31 @@ public class Lab7P1AlisonGuillen {
         } 
     }
 
-    public static void generarMatriz(int[][] matriz) {
+    public static int[][] generarMatriz(int[][] matriz) {
         Random ran = new Random();
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
                 matriz[i][j] = ran.nextInt(5) + 2;
-            }
-        }
-    }
+            }//fin for
+        }//fin for
+        return matriz;
+    }//fin método
 
     public static void imprimirMatriz(int[][] matriz) {
-        System.out.println();
+        System.out.println("");
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
-                System.out.print("|" + matriz[i][j] + "] ");
-            }
-            System.out.println();
-        }
-    }
+                System.out.print("[" + matriz[i][j] + "] ");
+            }//fin for
+            System.out.println("");
+        }//fin for
+    }//fin método
+
 
 public static void encontrarNumeroEquilibrado(int[][] matriz) {
     int filae = 0;
     int columnae= 0;
     int mindif = Integer.MAX_VALUE;
-
     for (int i = 0; i < matriz.length; i++) {
         for (int j = 0; j < matriz[i].length; j++) {
             int filasum= 0;
@@ -167,18 +181,33 @@ public static int sumarAlrededor(int[][] matriz, int fila, int columna) {
     if (fila < matriz.length - 1) {
         suma += matriz[fila + 1][columna];
     }
-
     // Izquierda
     if (columna > 0) {
         suma += matriz[fila][columna - 1];
     }
-
     // Derecha
     if (columna < matriz[fila].length - 1) {
         suma += matriz[fila][columna + 1];
     }
-
     return suma;
 }
+    public static int[][] generarMatriz2(int size) {
+        Random ran2 = new Random();
+        int[][] matriz2 = new int[size][size];
+        for (int i = 0; i < matriz2.length; i++) {
+            for (int j = 0; j < matriz2[i].length; j++) {
+                matriz2[i][j] = ran2.nextInt(10); 
+            }
+        }
+        return matriz2;
+    }
+        public static void imprimirMatriz2(int[][] matriz2) {
+        for (int i = 0; i < matriz2.length; i++) {
+            for (int j = 0; j < matriz2[i].length; j++) {
+                System.out.print("[" + matriz2[i][j] + "] ");
+            }
+            System.out.println();
+        }
+    }
 }
-                
+         
